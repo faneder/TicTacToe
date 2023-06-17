@@ -1,8 +1,5 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BoardTest {
@@ -20,5 +17,17 @@ class BoardTest {
                 assertThat(board.getCell(row, col)).isEqualTo(' ');
             }
         }
+    }
+
+    @Test
+    void isValidMove() {
+        board.makeMove(1, 1, 'O');
+
+        assertThat(board.isValidMove(0, 0)).isTrue();
+        assertThat(board.isValidMove(1, 1)).isFalse();
+        assertThat(board.isValidMove(3, 0)).isFalse();
+        assertThat(board.isValidMove(0, 3)).isFalse();
+        assertThat(board.isValidMove(-1, 0)).isFalse();
+        assertThat(board.isValidMove(-1, 0)).isFalse();
     }
 }

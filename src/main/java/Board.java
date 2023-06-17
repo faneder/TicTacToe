@@ -19,4 +19,16 @@ public class Board {
     public char getCell(int row, int col) {
         return cells[row][col];
     }
+
+    public void makeMove(int row, int col, char mark) {
+        cells[row][col] = mark;
+    }
+
+    public boolean isValidMove(int row, int col) {
+        return isInsideBoard(row) && isInsideBoard(col) && cells[row][col] == ' ';
+    }
+
+    private boolean isInsideBoard(int value) {
+        return value >= 0 && value < 3;
+    }
 }
