@@ -32,7 +32,27 @@ public class Board {
         return value >= 0 && value < 3;
     }
 
-    public boolean hasWinner(char player) {
+    public boolean hasWinner(char symbol) {
+        for (int row = 0; row < 3; row++) {
+            if (cells[row][0] == symbol && cells[row][1] == symbol && cells[row][2] == symbol) {
+                return true;
+            }
+        }
+
+        for (int col = 0; col < 3; col++) {
+            if (cells[0][col] == symbol && cells[1][col] == symbol && cells[2][col] == symbol) {
+                return true;
+            }
+        }
+
+        if (cells[0][0] == symbol && cells[1][1] == symbol && cells[2][2] == symbol) {
+            return true;
+        }
+
+        if (cells[0][2] == symbol && cells[1][1] == symbol && cells[2][0] == symbol) {
+            return true;
+        }
+
         return false;
     }
 
