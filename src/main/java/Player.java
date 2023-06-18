@@ -21,4 +21,8 @@ public class Player {
 
         board.markCell(row, col, symbol);
     }
+
+    public char getSymbol() {
+        return ' ';
+    }
 }

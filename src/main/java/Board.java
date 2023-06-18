@@ -31,4 +31,15 @@ public class Board {
     private boolean isInsideBoard(int value) {
         return value >= 0 && value < 3;
     }
+
+    public boolean hasWinner(char player) {
+        return false;
+    }
+
+    public void display() {
+    }
+
+    public boolean isFull() {
+        return false;
+    }
 }
