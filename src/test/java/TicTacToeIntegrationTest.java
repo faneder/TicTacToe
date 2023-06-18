@@ -7,7 +7,7 @@ import java.io.PrintStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class IntegrationTest {
+class TicTacToeIntegrationTest {
 
     @Test
     void whenPlayerXWins() {
