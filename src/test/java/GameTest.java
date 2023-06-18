@@ -40,14 +40,14 @@ class GameTest {
     void whenPlayGameThenPlayerXWins() {
         when(board.hasWinner('X')).thenReturn(true);
         when(playerX.getSymbol()).thenReturn('X');
+        var output = getOutputFromStream();
 
         game.play();
 
-        verify(board, atLeastOnce()).display();
         verify(playerX, atLeastOnce()).move();
         verify(playerO, never()).move();
         verify(board, never()).isFull();
-        assertThat(getOutputFromStream()).contains("Player X wins!");
+        assertThat(output.toString()).contains("Player X wins!");
     }
 
     @Test
@@ -55,14 +55,14 @@ class GameTest {
         when(board.hasWinner('X')).thenReturn(false);
         when(board.hasWinner('O')).thenReturn(true);
         when(playerO.getSymbol()).thenReturn('O');
+        var output = getOutputFromStream();
 
         game.play();
 
-        verify(board, atLeastOnce()).display();
         verify(playerO, atLeastOnce()).move();
         verify(playerX, times(1)).move();
         verify(board, times(1)).isFull();
-        assertThat(getOutputFromStream()).contains("Player O wins!");
+        assertThat(output.toString()).contains("Player O wins!");
     }
 
     @Test
@@ -72,17 +72,16 @@ class GameTest {
 
         game.play();
 
-        verify(board, times(1)).display();
         verify(playerX, times(1)).move();
         verify(board, times(1)).hasWinner(anyChar());
         verify(playerO, never()).move();
         verify(board, times(1)).isFull();
     }
 
-    private String getOutputFromStream() {
+    private ByteArrayOutputStream getOutputFromStream() {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 
-        return outputStream.toString();
+        return outputStream;
     }
 }

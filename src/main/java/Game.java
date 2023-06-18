@@ -19,11 +19,9 @@ public class Game {
 
             if (board.hasWinner(currentPlayer.getSymbol())) {
                 System.out.println("Player " + currentPlayer.getSymbol() + " wins!");
-                board.display();
                 gameFinished = true;
             } else if (board.isFull()) {
                 System.out.println("It's a draw!");
-                board.display();
                 gameFinished = true;
             }
             currentPlayer = currentPlayer == playerX ? playerO : playerX;

@@ -45,11 +45,7 @@ public class Board {
             return true;
         }
 
-        if (cells[0][2] == symbol && cells[1][1] == symbol && cells[2][0] == symbol) {
-            return true;
-        }
-
-        return false;
+        return cells[0][2] == symbol && cells[1][1] == symbol && cells[2][0] == symbol;
     }
 
     public boolean isFull() {
@@ -62,9 +58,6 @@ public class Board {
         }
 
         return true;
-    }
-
-    public void display() {
     }
 
     private boolean isInsideBoard(int value) {
