@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.assertj.core.api.Assertions.assertThat;
+
+import static org.assertj.core.api.Assertions.*;
 
 class BoardTest {
     private Board board;
@@ -21,7 +22,7 @@ class BoardTest {
 
     @Test
     void isValidMove() {
-        board.makeMove(1, 1, 'O');
+        board.markCell(1, 1, 'O');
 
         assertThat(board.isValidMove(0, 0)).isTrue();
         assertThat(board.isValidMove(1, 1)).isFalse();

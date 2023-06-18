@@ -20,7 +20,7 @@ public class Board {
         return cells[row][col];
     }
 
-    public void makeMove(int row, int col, char mark) {
+    public void markCell(int row, int col, char mark) {
         cells[row][col] = mark;
     }
 
