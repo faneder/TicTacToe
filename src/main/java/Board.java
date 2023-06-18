@@ -28,10 +28,6 @@ public class Board {
         return isInsideBoard(row) && isInsideBoard(col) && cells[row][col] == ' ';
     }
 
-    private boolean isInsideBoard(int value) {
-        return value >= 0 && value < 3;
-    }
-
     public boolean hasWinner(char symbol) {
         for (int row = 0; row < 3; row++) {
             if (cells[row][0] == symbol && cells[row][1] == symbol && cells[row][2] == symbol) {
@@ -56,9 +52,6 @@ public class Board {
         return false;
     }
 
-    public void display() {
-    }
-
     public boolean isFull() {
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
@@ -69,5 +62,12 @@ public class Board {
         }
 
         return true;
+    }
+
+    public void display() {
+    }
+
+    private boolean isInsideBoard(int value) {
+        return value >= 0 && value < 3;
     }
 }
