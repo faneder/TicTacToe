@@ -10,8 +10,15 @@ public class Player {
     }
 
     public void move() {
-        int row = inputProvider.getInput() - 1;
-        int col = inputProvider.getInput() - 1;
+        int row;
+        int col;
+
+        do {
+            System.out.print("Player " + symbol + ": enter your move (row [0-2] and column [0-2]): ");
+            row = inputProvider.getInput();
+            col = inputProvider.getInput();
+        } while (!board.isValidMove(row, col));
+
         board.markCell(row, col, symbol);
     }
 }
