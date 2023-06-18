@@ -23,6 +23,6 @@ public class Player {
     }
 
     public char getSymbol() {
-        return ' ';
+        return symbol;
     }
 }

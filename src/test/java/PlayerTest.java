@@ -1,38 +1,40 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
 
 class PlayerTest {
+  private Board board;
+  private InputProvider input;
+  private Player playerX;
 
-    @Test
-    void givenValidMoveWhenMoveCalledThenMarksCellOnce() {
-        Board board = mock(Board.class);
-        InputProvider input = mock(InputProvider.class);
-        when(input.getInput()).thenReturn(1, 1);
-        when(board.isValidMove(anyInt(), anyInt())).thenReturn(true);
+  @BeforeEach
+  void setUp() {
+    board = mock(Board.class);
+    input = mock(InputProvider.class);
+    playerX = new Player(board, 'X', input);
+  }
 
-        Player player = new Player(board, 'X', input);
+  @Test
+  void givenValidMoveWhenMoveCalledThenMarksCellOnce() {
+    when(input.getInput()).thenReturn(1);
+    when(board.isValidMove(anyInt(), anyInt())).thenReturn(true);
 
-        player.move();
+    playerX.move();
 
-        verify(board, times(1)).markCell(1, 1, 'X');
-    }
+    verify(board, times(1)).markCell(1, 1, 'X');
+  }
 
-    @Test
-    void givenMultipleInvalidMovesThenValidWhenMoveCalledThenMarkCellCalledOnce() {
-        Board board = mock(Board.class);
-        InputProvider inputProvider = mock(InputProvider.class);
+  @Test
+  void givenMultipleInvalidMovesThenValidWhenMoveCalledThenMarkCellCalledOnce() {
+    when(input.getInput()).thenReturn(0, 0, 5, 5, 1, 2);
+    when(board.isValidMove(0, 0)).thenReturn(false);
+    when(board.isValidMove(5, 5)).thenReturn(false);
+    when(board.isValidMove(1, 2)).thenReturn(true);
 
-        when(inputProvider.getInput()).thenReturn(0, 0, 5, 5, 1, 2);
+    playerX.move();
 
-        when(board.isValidMove(0, 0)).thenReturn(false);
-        when(board.isValidMove(5, 5)).thenReturn(false);
-        when(board.isValidMove(1, 2)).thenReturn(true);
-
-        Player player = new Player(board, 'X', inputProvider);
-
-        player.move();
-        verify(inputProvider, times(6)).getInput();
-        verify(board, times(1)).markCell(1, 2, 'X');
-    }
+    verify(input, times(6)).getInput();
+    verify(board, times(1)).markCell(1, 2, 'X');
+  }
 }
