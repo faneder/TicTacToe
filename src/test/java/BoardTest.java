@@ -82,4 +82,27 @@ class BoardTest {
         assertThat(board.hasWinner('X')).isFalse();
         assertThat(board.hasWinner('O')).isFalse();
     }
+
+    @Test
+    void givenPartiallyFilledBoardWhenIsFullCalledThenReturnsFalse() {
+        board.markCell(0, 0, 'X');
+        board.markCell(1, 1, 'O');
+
+        assertThat(board.isFull()).isFalse();
+    }
+
+    @Test
+    void givenFullBoardWhenIsFullCalledThenReturnsTrue() {
+        board.markCell(0, 0, 'X');
+        board.markCell(0, 1, 'O');
+        board.markCell(0, 2, 'X');
+        board.markCell(1, 0, 'O');
+        board.markCell(1, 1, 'X');
+        board.markCell(1, 2, 'O');
+        board.markCell(2, 0, 'X');
+        board.markCell(2, 1, 'O');
+        board.markCell(2, 2, 'X');
+
+        assertThat(board.isFull()).isTrue();
+    }
 }

@@ -60,6 +60,14 @@ public class Board {
     }
 
     public boolean isFull() {
-        return false;
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                if (cells[row][col] == ' ') {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 }
