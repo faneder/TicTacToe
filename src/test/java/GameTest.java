@@ -25,7 +25,7 @@ class GameTest {
 
     @Test
     void whenPlayGameThenSwitchPlayers() {
-        when(board.hasWinner(anyChar())).thenReturn(false, false, false);
+        when(board.hasWinner(anyChar())).thenReturn(false);
         when(board.isFull()).thenReturn(false, false, true);
 
         game.play();
